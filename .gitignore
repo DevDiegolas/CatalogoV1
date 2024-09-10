@@ -1,0 +1,20 @@
+# Ignorar o diretório node_modules
+/node_modules
+
+# Ignorar o arquivo de log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de configuração de IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs_analysis.dat
+*.njsproj
+*.sln
+*.sw?
