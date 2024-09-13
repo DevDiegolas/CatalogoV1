@@ -110,28 +110,31 @@ function App() {
                     <div className="form-container">
                         <h2>Cadastro de Itens</h2>
                         <form onSubmit={saveItem}>
-                            <label>
-                                Nome:
+                            <div className="input-group">
+                                <label className="label">Nome:</label>
                                 <input
+                                    className="input"
                                     type="text"
                                     value={nome}
                                     onChange={(e) => setNome(e.target.value)}
                                     required
                                 />
-                            </label>
-                            <label>
-                                Descrição:
+                            </div>
+                            
+                            <div className="input-group">
+                                <label className="label">Descrição:</label>
                                 <textarea
+                                    className="input"
                                     value={descricao}
                                     onChange={(e) => setDescricao(e.target.value)}
                                     required
                                 />
-                            </label>
-                            <label>
+                            </div>
+                            <label className="label">
                                 Imagem:
                                 <input type="file" onChange={(e) => setImagem(e.target.files[0])} />
                             </label>
-                            <button type="submit">Cadastrar</button>
+                            <button className='button' type="submit">Cadastrar</button>
                         </form>
                     </div>
                 )}
@@ -140,20 +143,29 @@ function App() {
                     <div className="items-container">
                         <h2>Itens Cadastrados</h2>
                         <div className="items-list">
-                            {items.map((item) => (
-                                <div className="item-card" key={item.id}>
-                                    <img
-                                        src={item.imagem_url ? `http://localhost:3001/${item.imagem_url}` : 'https://via.placeholder.com/300x200'}
-                                        alt={item.nome}
-                                        className="item-image"
-                                    />
-                                    <div className="item-details">
-                                        <h5>{item.nome}</h5>
-                                        <p>{item.descricao}</p>
-                                        <button className="delete-button" onClick={() => handleRemove(item.id)}>🗑️</button>
+                            {items.map((item) => {
+                                const imageUrl = item.imagem_url ? `http://localhost:3001/uploads/${item.imagem_url}` : 'https://via.placeholder.com/300x200';
+                                console.log('Imagem URL:', imageUrl); // Log para depuração
+
+                                return (
+                                    <div className="item-card" key={item.id}>
+                                        <img
+                                            src={imageUrl}
+                                            alt={item.nome}
+                                            className="item-image"
+                                        />
+                                        <div className="item-details">
+                                            <h5>{item.nome}</h5>
+                                            <p>{item.descricao}</p>
+                                            <button className="button-delete" onClick={() => handleRemove(item.id)}>
+                                            <svg viewBox="0 0 448 512" className="svgIcon">
+                                                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                            </svg>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 )}
