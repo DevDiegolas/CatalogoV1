@@ -85,9 +85,13 @@ function App() {
             <header>
                 <div className="navbar">
                     <h1>Catalogo Online</h1>
-                    <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>
-                        &#9776;
-                    </button>
+                    <input type="checkbox" id="checkbox" onClick={() => setMenuOpen(!menuOpen)}></input>
+                    <label for="checkbox" className="toggle">
+                        
+                        <div class="bars" id="bar1"></div>
+                        <div class="bars" id="bar2"></div>
+                        <div class="bars" id="bar3"></div>
+                    </label>
                     {menuOpen && (
                         <nav className="menu">
                             <ul>
